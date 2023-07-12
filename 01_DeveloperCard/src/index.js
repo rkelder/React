@@ -2,6 +2,7 @@ import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import "./styles.css"
 
+// list of skills
 const skills = [
   {
     skill: "HTML & CSS",
