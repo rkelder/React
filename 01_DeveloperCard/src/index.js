@@ -1,6 +1,34 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./styles.css";
+import { StrictMode } from "react"
+import { createRoot } from "react-dom/client"
+import "./styles.css"
+
+const skills = [
+  {
+    skill: "HTML & CSS",
+    level: "advanced",
+    color: "#2662EA",
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    color: "#EFD81D",
+  },
+  {
+    skill: "Git & GitHub",
+    level: "advanced",
+    color: "#C3DCAF",
+  },
+  {
+    skill: "React",
+    level: "intermediate",
+    color: "#60DAFB",
+  },
+]
+
+/* 
+- loop over this list, display one skill for each object;
+- conditionally set an accompanying emoji depending on your level;
+*/
 
 function App() {
   return (
@@ -17,7 +45,7 @@ function App() {
         <SkillList className="SkillList" />
       </div>
     </div>
-  );
+  )
 }
 
 function Avatar(props) {
@@ -25,7 +53,7 @@ function Avatar(props) {
     <div>
       <img src={props.picture} alt={props.pictureName} className="avatar" />
     </div>
-  );
+  )
 }
 
 function Intro(props) {
@@ -34,34 +62,37 @@ function Intro(props) {
       <h1>{props.name}</h1>
       <p>{props.description}</p>
     </div>
-  );
+  )
 }
 
-function SkillList(props) {
+function SkillList() {
   return (
     <div className="skill-list">
-      <Skill skill="HTML & CSS" emoji="💪" color="blue" />
-      <Skill skill="JavaScript" emoji="💪" color="red" />
-      <Skill skill="Git & GitHub" emoji="💪" color="orange" />
-      <Skill skill="React" emoji="👶" color="yellow" />
+      {skills.map((skill) => (
+        <Skill skill={skill.skill} color={skill.color} level={skill.level} />
+      ))}
     </div>
-  );
+  )
 }
 
-function Skill(props) {
+function Skill({ skill, color, level }) {
   return (
-    <div className="skill" style={{ backgroundColor: props.color }}>
-      <span>{props.skill}</span>
-      <span>{props.emoji}</span>
+    <div className="skill" style={{ backgroundColor: color }}>
+      <span>{skill}</span>
+      <span>
+        {level === "beginner" && "👶"}
+        {level === "intermediate" && "👍"}
+        {level === "advanced" && "💪"}
+      </span>
     </div>
-  );
+  )
 }
 
-const rootElement = document.getElementById("root");
-const root = createRoot(rootElement);
+const rootElement = document.getElementById("root")
+const root = createRoot(rootElement)
 
 root.render(
   <StrictMode>
     <App />
   </StrictMode>
-);
+)

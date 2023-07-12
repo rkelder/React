@@ -69,6 +69,10 @@ function Header() {
   )
 }
 
+/*
+If the number of pizza's is 0, the website will display a friendly message alerting the customer that there are no pizza's available.
+*/
+
 function Menu() {
   const pizzas = pizzaData
   const numPizzas = pizzas.length
@@ -76,10 +80,6 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our menu</h2>
-
-      {/*
-If the number of pizza's is 0, the website will display a friendly message alerting the customer that there are no pizza's available.
-*/}
 
       {numPizzas > 0 ? (
         <React.Fragment key="fragment_0">
@@ -102,8 +102,6 @@ If the number of pizza's is 0, the website will display a friendly message alert
 }
 
 function Pizza({ pizzaObj }) {
-  // if (pizzaObj.soldOut) return null
-
   return (
     <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
       <img src={pizzaObj.photoName} alt={pizzaObj.name} />
@@ -124,11 +122,9 @@ function Footer() {
   const isOpen = hour >= openHour && hour <= closeHour
   console.log(isOpen)
 
-  {
-    /*
+  /*
 If the website loads outside of opening hours, the website will display that the pizzeria is closed.
 */
-  }
 
   return (
     <footer className="footer">
