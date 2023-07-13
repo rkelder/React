@@ -117,7 +117,7 @@ function Pizza({ pizzaObj }) {
 function Footer() {
   const hour = new Date().getHours()
   console.log(hour)
-  const openHour = 12
+  const openHour = 8
   const closeHour = 22
   const isOpen = hour >= openHour && hour <= closeHour
   console.log(isOpen)
@@ -141,13 +141,15 @@ If the website loads outside of opening hours, the website will display that the
 }
 
 function Order({ closeHour, openHour }) {
-  ;<div className="order">
-    <p>
-      We're open from {openHour} until {closeHour}:00. Come visit us or order
-      online.
-    </p>
-    <button className="btn">Order</button>
-  </div>
+  return (
+    <div className="order">
+      <p>
+        We're open from {openHour}:00 until {closeHour}:00. Come visit us or
+        order online.
+      </p>
+      <button className="btn">Order</button>
+    </div>
+  )
 }
 
 // React 18;
