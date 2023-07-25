@@ -31,4 +31,5 @@ div.selected {
   background-color: #e03131;
   color: #fff;
   font-weight: bold;
+  transition: 0.75s;
 }
