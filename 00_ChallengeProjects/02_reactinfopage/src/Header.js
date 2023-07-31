@@ -1,4 +1,6 @@
-export default function Navbar() {
+import React from "react"
+
+function Header() {
   return (
     <nav>
       <img
@@ -11,3 +13,5 @@ export default function Navbar() {
     </nav>
   )
 }
+
+export default Header

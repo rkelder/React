@@ -1,4 +1,6 @@
-export default function MainContent() {
+import React from "react"
+
+function MainContent() {
   return (
     <main className="mainContent">
       <h1>Fun facts about React</h1>
@@ -12,3 +14,5 @@ export default function MainContent() {
     </main>
   )
 }
+
+export default MainContent
