@@ -19,8 +19,10 @@ export default function Card(props) {
       <div className="card--stats">
         <img src="assets/star.png" alt="A star icon" className="card--star" />
         <span>{props.item.stats.rating}</span>
-        <span className="gray">({props.item.stats.reviewCount}) • </span>
-        <span className="gray">{props.item.country}</span>
+        <span className="gray card--margin">
+          ({props.item.stats.reviewCount}) •
+        </span>
+        <span className="gray card--margin">{props.item.location}</span>
       </div>
       <p className="card--title">{props.item.title}</p>
       <p className="card--price">
