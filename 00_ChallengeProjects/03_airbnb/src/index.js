@@ -7,19 +7,7 @@ import Card from "./components/Card"
 import data from "./data.js"
 
 const cards = data.map((item) => {
-  return (
-    <Card
-      key={item.id}
-      img={item.coverImg}
-      alt=""
-      rating={item.stats.rating}
-      reviewCount={item.stats.reviewCount}
-      country={item.location}
-      title={item.title}
-      price={item.price}
-      openSpots={item.openSpots}
-    />
-  )
+  return <Card key={item.id} item={item} />
 })
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
