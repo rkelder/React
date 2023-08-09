@@ -9,7 +9,7 @@ export default function FriendService({
 
   return (
     <div className="row">
-      <h3 className="header">How was the service?</h3>
+      <h3 className="header">How did your friend find the service?</h3>
       <select
         className="input"
         value={tipPercentageFriendService}

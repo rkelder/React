@@ -6,7 +6,7 @@ export default function YourService({ tipPercentageYourService, onTipChange }) {
 
   return (
     <div className="row">
-      <h3 className="header">How was the service?</h3>
+      <h3 className="header">How did you find the service?</h3>
       <select
         className="input"
         value={tipPercentageYourService}
