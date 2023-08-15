@@ -1,35 +1,35 @@
-import { useEffect, useRef, useState } from "react";
-import StarRating from "./StarRating";
-import { useKey } from "./useKey";
-import { useLocalStorageState } from "./useLocalStorageState";
-import { useMovies } from "./useMovies";
+import { useEffect, useRef, useState } from "react"
+import StarRating from "./StarRating"
+import { useKey } from "./useKey"
+import { useLocalStorageState } from "./useLocalStorageState"
+import { useMovies } from "./useMovies"
 
 const average = (arr) =>
-  arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+  arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0)
 
-const KEY = "f84fc31d";
+const KEY = "f84fc31d"
 
 export default function App() {
-  const [query, setQuery] = useState("");
-  const [selectedId, setSelectedId] = useState(null);
-  const { movies, isLoading, error } = useMovies(query);
+  const [query, setQuery] = useState("")
+  const [selectedId, setSelectedId] = useState(null)
+  const { movies, isLoading, error } = useMovies(query)
 
-  const [watched, setWatched] = useLocalStorageState([], "watched");
+  const [watched, setWatched] = useLocalStorageState([], "watched")
 
   function handleSelectMovie(id) {
-    setSelectedId((selectedId) => (id === selectedId ? null : id));
+    setSelectedId((selectedId) => (id === selectedId ? null : id))
   }
 
   function handleCloseMovie() {
-    setSelectedId(null);
+    setSelectedId(null)
   }
 
   function handleAddWatched(movie) {
-    setWatched((watched) => [...watched, movie]);
+    setWatched((watched) => [...watched, movie])
   }
 
   function handleDeleteWatched(id) {
-    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
+    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id))
   }
 
   return (
@@ -69,11 +69,11 @@ export default function App() {
         </Box>
       </Main>
     </>
-  );
+  )
 }
 
 function Loader() {
-  return <p className="loader">Loading...</p>;
+  return <p className="loader">Loading...</p>
 }
 
 function ErrorMessage({ message }) {
@@ -81,7 +81,7 @@ function ErrorMessage({ message }) {
     <p className="error">
       <span>⛔️</span> {message}
     </p>
-  );
+  )
 }
 
 function NavBar({ children }) {
@@ -90,7 +90,7 @@ function NavBar({ children }) {
       <Logo />
       {children}
     </nav>
-  );
+  )
 }
 
 function Logo() {
@@ -99,17 +99,17 @@ function Logo() {
       <span role="img">🍿</span>
       <h1>usePopcorn</h1>
     </div>
-  );
+  )
 }
 
 function Search({ query, setQuery }) {
-  const inputEl = useRef(null);
+  const inputEl = useRef(null)
 
   useKey("Enter", function () {
-    if (document.activeElement === inputEl.current) return;
-    inputEl.current.focus();
-    setQuery("");
-  });
+    if (document.activeElement === inputEl.current) return
+    inputEl.current.focus()
+    setQuery("")
+  })
 
   return (
     <input
@@ -120,7 +120,7 @@ function Search({ query, setQuery }) {
       onChange={(e) => setQuery(e.target.value)}
       ref={inputEl}
     />
-  );
+  )
 }
 
 function NumResults({ movies }) {
@@ -128,15 +128,15 @@ function NumResults({ movies }) {
     <p className="num-results">
       Found <strong>{movies.length}</strong> results
     </p>
-  );
+  )
 }
 
 function Main({ children }) {
-  return <main className="main">{children}</main>;
+  return <main className="main">{children}</main>
 }
 
 function Box({ children }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true)
 
   return (
     <div className="box">
@@ -146,7 +146,7 @@ function Box({ children }) {
 
       {isOpen && children}
     </div>
-  );
+  )
 }
 
 /*
@@ -181,7 +181,7 @@ function MovieList({ movies, onSelectMovie }) {
         <Movie movie={movie} key={movie.imdbID} onSelectMovie={onSelectMovie} />
       ))}
     </ul>
-  );
+  )
 }
 
 function Movie({ movie, onSelectMovie }) {
@@ -196,27 +196,27 @@ function Movie({ movie, onSelectMovie }) {
         </p>
       </div>
     </li>
-  );
+  )
 }
 
 function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
-  const [movie, setMovie] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [userRating, setUserRating] = useState("");
+  const [movie, setMovie] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
+  const [userRating, setUserRating] = useState("")
 
-  const countRef = useRef(0);
+  const countRef = useRef(0)
 
   useEffect(
     function () {
-      if (userRating) countRef.current++;
+      if (userRating) countRef.current++
     },
     [userRating]
-  );
+  )
 
-  const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
+  const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId)
   const watchedUserRating = watched.find(
     (movie) => movie.imdbID === selectedId
-  )?.userRating;
+  )?.userRating
 
   const {
     Title: title,
@@ -229,7 +229,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     Actors: actors,
     Director: director,
     Genre: genre,
-  } = movie;
+  } = movie
 
   // if (imdbRating > 8) return <p>Greatest ever!</p>;
   // if (imdbRating > 8) [isTop, setIsTop] = useState(true);
@@ -243,8 +243,8 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   //   [imdbRating]
   // );
 
-  const isTop = imdbRating > 8;
-  console.log(isTop);
+  const isTop = imdbRating > 8
+  console.log(isTop)
 
   // const [avgRating, setAvgRating] = useState(0);
 
@@ -258,45 +258,45 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       runtime: Number(runtime.split(" ").at(0)),
       userRating,
       countRatingDecisions: countRef.current,
-    };
+    }
 
-    onAddWatched(newWatchedMovie);
-    onCloseMovie();
+    onAddWatched(newWatchedMovie)
+    onCloseMovie()
 
     // setAvgRating(Number(imdbRating));
     // setAvgRating((avgRating) => (avgRating + userRating) / 2);
   }
 
-  useKey("Escape", onCloseMovie);
+  useKey("Escape", onCloseMovie)
 
   useEffect(
     function () {
       async function getMovieDetails() {
-        setIsLoading(true);
+        setIsLoading(true)
         const res = await fetch(
           `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
-        );
-        const data = await res.json();
-        setMovie(data);
-        setIsLoading(false);
+        )
+        const data = await res.json()
+        setMovie(data)
+        setIsLoading(false)
       }
-      getMovieDetails();
+      getMovieDetails()
     },
     [selectedId]
-  );
+  )
 
   useEffect(
     function () {
-      if (!title) return;
-      document.title = `Movie | ${title}`;
+      if (!title) return
+      document.title = `Movie | ${title}`
 
       return function () {
-        document.title = "usePopcorn";
+        document.title = "usePopcorn"
         // console.log(`Clean up effect for movie ${title}`);
-      };
+      }
     },
     [title]
-  );
+  )
 
   return (
     <div className="details">
@@ -354,13 +354,13 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
         </>
       )}
     </div>
-  );
+  )
 }
 
 function WatchedSummary({ watched }) {
-  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
-  const avgUserRating = average(watched.map((movie) => movie.userRating));
-  const avgRuntime = average(watched.map((movie) => movie.runtime));
+  const avgImdbRating = average(watched.map((movie) => movie.imdbRating))
+  const avgUserRating = average(watched.map((movie) => movie.userRating))
+  const avgRuntime = average(watched.map((movie) => movie.runtime))
 
   return (
     <div className="summary">
@@ -384,7 +384,7 @@ function WatchedSummary({ watched }) {
         </p>
       </div>
     </div>
-  );
+  )
 }
 
 function WatchedMoviesList({ watched, onDeleteWatched }) {
@@ -398,7 +398,7 @@ function WatchedMoviesList({ watched, onDeleteWatched }) {
         />
       ))}
     </ul>
-  );
+  )
 }
 
 function WatchedMovie({ movie, onDeleteWatched }) {
@@ -428,5 +428,5 @@ function WatchedMovie({ movie, onDeleteWatched }) {
         </button>
       </div>
     </li>
-  );
+  )
 }
